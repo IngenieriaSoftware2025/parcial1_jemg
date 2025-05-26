@@ -11,10 +11,8 @@ use MVC\Router;
 class AsistenciaController extends ActiveRecord
 {
 
-    public function renderizarPagina(Router $router)
+    public static function renderizarPagina(Router $router)
     {
         $router->render('asistencias/index', []);
     }
-
-
 }

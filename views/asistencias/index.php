@@ -18,39 +18,12 @@
                                             <option value="<?= $actividad->actividad_id ?>"><?= $actividad->actividad_nombre ?></option>
                                         <?php endforeach; ?>
                                     </select>
-                                    <div class="col-md-6">
-                                <label for="actividad_hora_esperada" class="form-label">Fecha y Hora programada</label>
-                                <input type="datetime-local" class="form-control form-control-lg" id="actividad_hora_esperada" name="actividad_hora_esperada" required>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="row g-4 mb-3">
-                            <div class="col-md-6">
-                                <label for="asistencia_fecha" class="form-label">Fecha de llegada</label>
-                                <input type="date" class="form-control form-control-lg" id="asistencia_fecha" name="asistencia_fecha" placeholder="Ingrese su fecha de llegada" required>
                             </div>
                             <div class="col-md-6">
-                                <label for="asistencia_hora_real" class="form-label">Hora de llegada</label>
-                                <input type="" class="form-control form-control-lg" id="asistencia_hora_real" name="asistencia_hora_real" placeholder="Ingrese su número de teléfono" required>
-                            </div>
-                        </div>
-                        <div class="row g-4 mb-4">
-                            <div class="col-md-6">
-                                <label for="usuario_correo" class="form-label">Correo electrónico</label>
-                                <input type="email" class="form-control form-control-lg" id="usuario_correo" name="usuario_correo" placeholder="ejemplo@ejemplo.com" required>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="usuario_estado" class="form-label">Estado del usuario</label>
-                                <select name="usuario_estado" class="form-select form-select-lg" id="usuario_estado" required>
-                                    <option value="">-- Seleccione el estado --</option>
-                                    <option value="P">Presente</option>
-                                    <option value="F">Faltando</option>
-                                    <option value="C">Comisión</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="usuario_fecha" class="form-label">Ingrese la Fecha</label>
-                                <input type="datetime-local" class="form-control form-control-lg" id="usuario_fecha" name="usuario_fecha" required>
+                                <div class="col-md-6">
+                                        <label for="asistencia_hora_llegada" class="form-label">Fecha y Hora de llegada</label>
+                                        <input type="datetime-local" class="form-control form-control-lg" id="asistencia_hora_llegada" name="asistencia_hora_llegada" required>
+                                </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-center gap-3">
@@ -73,7 +46,7 @@
         <div class="col-lg-11">
             <div class="card shadow-lg border-primary rounded-4">
                 <div class="card-body">
-                    <h3 class="text-center text-primary mb-4">Usuarios registrados en la base de datos</h3>
+                    <h3 class="text-center text-primary mb-4">Asistencias registradas</h3>
 
                                     <!-- FILTRO DE FECHAS -->
                 <div class="row g-4 mb-4">
@@ -94,7 +67,7 @@
 
                     <div class="table-responsive">
                         <table class="table table-striped table-hover table-bordered align-middle rounded-3 overflow-hidden" id="TableUsuarios">
-                            <!-- Aquí se cargan los usuarios -->
+                            <!-- Aquí se cargan las asistencias -->
                         </table>
                     </div>
                 </div>

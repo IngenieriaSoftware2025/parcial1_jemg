@@ -26,7 +26,7 @@ class Asistencias extends ActiveRecord {
 
     public static function EliminarAsistencias($id){
 
-        $sql = "DELETE FROM aistencias WHERE asistencia_id = $id";
+        $sql = "DELETE FROM asistencias WHERE asistencia_id = $id";
 
         return self::SQL($sql);
     }

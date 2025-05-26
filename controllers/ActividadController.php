@@ -10,7 +10,7 @@ use MVC\Router;
 class ActividadController extends ActiveRecord
 {
 
-    public static    function renderizarPagina(Router $router)
+    public static function renderizarPagina(Router $router)
     {
         $router->render('actividades/index', []);
     }
