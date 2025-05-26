@@ -1,6 +1,6 @@
 {
-    "name": "mindef/demo",
-    "description": "Proyecto MVC demo",
+    "name": "parcial1/jemg",
+    "description": "Proyecto para asistencia de actividades de Carlos",
     "type": "project",
     "config": {
         "platform-check": false
