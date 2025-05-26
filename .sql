@@ -9,3 +9,11 @@ CREATE TABLE actividades (
 
 
 
+
+CREATE TABLE asistencias (
+    asistencia_id SERIAL PRIMARY KEY,
+    actividad_id INT NOT NULL,
+    asistencia_hora_llegada DATETIME YEAR TO SECOND NOT NULL,
+    asistencia_situacion SMALLINT DEFAULT 1,
+    FOREIGN KEY (actividad_id) REFERENCES actividades(actividad_id)
+);
