@@ -10,18 +10,30 @@
                     <form id="FormAsistencias" class="p-4 bg-white rounded-3 shadow-sm border">
                         <input type="hidden" id="asistencia_id" name="asistencia_id">
                         <div class="row g-4 mb-3">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <label for="actividad_id" class="form-label">Actividades</label>
                                 <select name="actividad_id" id="actividad_id" class="form-select" required>
                                     <option value="">-- Seleccione una Actividad --</option>
                                     <?php foreach($actividades as $actividad): ?>
-                                        <option value="<?= $actividad->actividad_id ?>"><?= $actividad->actividad_nombre ?></option>
+                                        <?php 
+                                            $fecha = new DateTime($actividad->actividad_hora_esperada);
+                                            $fechaFormateada = $fecha->format('d/m/Y H:i');
+                                        ?>
+                                        <option value="<?= $actividad->actividad_id ?>">
+                                            <?= $actividad->actividad_nombre ?> - <?= $fechaFormateada ?>
+                                        </option>
                                     <?php endforeach; ?>
                                 </select>
                             </div>
-                            <div class="col-md-6">
-                                <label for="asistencia_hora_llegada" class="form-label">Fecha y Hora de llegada</label>
-                                <input type="datetime-local" class="form-control form-control-lg" id="asistencia_hora_llegada" name="asistencia_hora_llegada" required>
+                        </div>
+                        <div class="row g-4 mb-3">
+                            <div class="col-md-12">
+                                <div class="alert alert-info d-flex align-items-center" role="alert">
+                                    <i class="bi bi-info-circle-fill me-2"></i>
+                                    <div>
+                                        <strong>Nota:</strong> La hora de llegada se registrará automáticamente al momento de guardar la asistencia.
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-center gap-3">
@@ -46,14 +58,20 @@
                 <div class="card-body">
                     <h3 class="text-center text-primary mb-4">Asistencias registradas</h3>
 
-                    
+                    <!-- FILTRO DE FECHAS Y ACTIVIDADES -->
                     <div class="row g-4 mb-4">
                         <div class="col-md-3">
                             <label for="filtro_actividad" class="form-label">Filtrar por Actividad</label>
                             <select id="filtro_actividad" class="form-select form-select-lg">
                                 <option value="">-- Todas las Actividades --</option>
                                 <?php foreach($actividades as $actividad): ?>
-                                    <option value="<?= $actividad->actividad_id ?>"><?= $actividad->actividad_nombre ?></option>
+                                    <?php 
+                                        $fecha = new DateTime($actividad->actividad_hora_esperada);
+                                        $fechaFormateada = $fecha->format('d/m/Y H:i');
+                                    ?>
+                                    <option value="<?= $actividad->actividad_id ?>">
+                                        <?= $actividad->actividad_nombre ?> - <?= $fechaFormateada ?>
+                                    </option>
                                 <?php endforeach; ?>
                             </select>
                         </div>

@@ -24,7 +24,7 @@ const GuardarAsistencia = async (event) => {
             position: "center",
             icon: "info",
             title: "FORMULARIO INCOMPLETO",
-            text: "Debe validar todos los campos",
+            text: "Debe seleccionar una actividad",
             showConfirmButton: true,
         });
         BtnGuardar.disabled = false;
@@ -49,7 +49,7 @@ const GuardarAsistencia = async (event) => {
             await Swal.fire({
                 position: "center",
                 icon: "success",
-                title: "Éxito",
+                title: "¡Asistencia Registrada!",
                 text: mensaje,
                 showConfirmButton: true,
             });
@@ -224,11 +224,6 @@ const llenarFormulario = (event) => {
 
     document.getElementById('asistencia_id').value = datos.id
     document.getElementById('actividad_id').value = datos.actividad
-    
-    // Convertir fecha para datetime-local input
-    const fecha = new Date(datos.fecha);
-    const fechaFormateada = fecha.toISOString().slice(0, 16);
-    document.getElementById('asistencia_hora_llegada').value = fechaFormateada
 
     BtnGuardar.classList.add('d-none');
     BtnModificar.classList.remove('d-none');

@@ -27,13 +27,14 @@ class AsistenciaController extends ActiveRecord
 
         getHeadersApi();
 
-        $_POST['asistencia_hora_llegada'] = date('Y-m-d H:i:s', strtotime($_POST['asistencia_hora_llegada']));
+        // Generar automáticamente la hora actual de llegada
+        $asistencia_hora_llegada = date('Y-m-d H:i:s');
 
         try {
 
             $data = new Asistencias([
                 'actividad_id' => $_POST['actividad_id'],
-                'asistencia_hora_llegada' => $_POST['asistencia_hora_llegada'],
+                'asistencia_hora_llegada' => $asistencia_hora_llegada,
                 'asistencia_situacion' => 1
             ]);
 
@@ -42,7 +43,7 @@ class AsistenciaController extends ActiveRecord
             http_response_code(200);
             echo json_encode([
                 'codigo' => 1,
-                'mensaje' => 'Exito la asistencia ha sido registrada correctamente'
+                'mensaje' => 'Exito la asistencia ha sido registrada correctamente con hora: ' . date('d/m/Y H:i:s')
             ]);
         } catch (Exception $e) {
             http_response_code(400);
@@ -117,14 +118,14 @@ class AsistenciaController extends ActiveRecord
         getHeadersApi();
 
         $id = $_POST['asistencia_id'];
-        $_POST['asistencia_hora_llegada'] = date('Y-m-d H:i:s', strtotime($_POST['asistencia_hora_llegada']));
+        // Mantener la hora original, solo permitir cambiar la actividad
         
         try {
 
             $data = Asistencias::find($id);
             $data->sincronizar([
                 'actividad_id' => $_POST['actividad_id'],
-                'asistencia_hora_llegada' => $_POST['asistencia_hora_llegada'],
+                // No modificamos asistencia_hora_llegada para mantener la hora original
                 'asistencia_situacion' => 1
             ]);
             $data->actualizar();
@@ -132,7 +133,7 @@ class AsistenciaController extends ActiveRecord
             http_response_code(200);
             echo json_encode([
                 'codigo' => 1,
-                'mensaje' => 'La informacion de la asistencia ha sido modificada exitosamente'
+                'mensaje' => 'La actividad de la asistencia ha sido modificada exitosamente (hora original mantenida)'
             ]);
         } catch (Exception $e) {
             http_response_code(400);
