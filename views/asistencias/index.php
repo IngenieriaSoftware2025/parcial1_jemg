@@ -12,18 +12,16 @@
                         <div class="row g-4 mb-3">
                             <div class="col-md-6">
                                 <label for="actividad_id" class="form-label">Actividades</label>
-                                    <select name="actividad_id" id="actividad_id" class="form-select" required>
-                                        <option value="">-- Seleccione una Actividad --</option>
-                                        <?php foreach($actividades as $actividad): ?>
-                                            <option value="<?= $actividad->actividad_id ?>"><?= $actividad->actividad_nombre ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                <select name="actividad_id" id="actividad_id" class="form-select" required>
+                                    <option value="">-- Seleccione una Actividad --</option>
+                                    <?php foreach($actividades as $actividad): ?>
+                                        <option value="<?= $actividad->actividad_id ?>"><?= $actividad->actividad_nombre ?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                             <div class="col-md-6">
-                                <div class="col-md-6">
-                                        <label for="asistencia_hora_llegada" class="form-label">Fecha y Hora de llegada</label>
-                                        <input type="datetime-local" class="form-control form-control-lg" id="asistencia_hora_llegada" name="asistencia_hora_llegada" required>
-                                </div>
+                                <label for="asistencia_hora_llegada" class="form-label">Fecha y Hora de llegada</label>
+                                <input type="datetime-local" class="form-control form-control-lg" id="asistencia_hora_llegada" name="asistencia_hora_llegada" required>
                             </div>
                         </div>
                         <div class="d-flex justify-content-center gap-3">
@@ -48,25 +46,34 @@
                 <div class="card-body">
                     <h3 class="text-center text-primary mb-4">Asistencias registradas</h3>
 
-                                    <!-- FILTRO DE FECHAS -->
-                <div class="row g-4 mb-4">
-                    <div class="col-md-4">
-                        <label for="fecha_inicio" class="form-label">Fecha de inicio</label>
-                        <input type="date" id="fecha_inicio" class="form-control form-control-lg">
+                    
+                    <div class="row g-4 mb-4">
+                        <div class="col-md-3">
+                            <label for="filtro_actividad" class="form-label">Filtrar por Actividad</label>
+                            <select id="filtro_actividad" class="form-select form-select-lg">
+                                <option value="">-- Todas las Actividades --</option>
+                                <?php foreach($actividades as $actividad): ?>
+                                    <option value="<?= $actividad->actividad_id ?>"><?= $actividad->actividad_nombre ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="fecha_inicio" class="form-label">Fecha de inicio</label>
+                            <input type="date" id="fecha_inicio" class="form-control form-control-lg">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="fecha_fin" class="form-label">Fecha de fin</label>
+                            <input type="date" id="fecha_fin" class="form-control form-control-lg">
+                        </div>
+                        <div class="col-md-3 d-flex align-items-end">
+                            <button class="btn btn-primary btn-lg w-100 shadow" id="btn_filtrar_fecha">
+                                <i class="bi bi-funnel-fill me-2"></i>Buscar
+                            </button>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <label for="fecha_fin" class="form-label">Fecha de fin</label>
-                        <input type="date" id="fecha_fin" class="form-control form-control-lg">
-                    </div>
-                    <div class="col-md-4 d-flex align-items-end">
-                        <button class="btn btn-primary btn-lg w-100 shadow" id="btn_filtrar_fecha">
-                            <i class="bi bi-funnel-fill me-2"></i>Buscar por fecha
-                        </button>
-                    </div>
-                </div>
 
                     <div class="table-responsive">
-                        <table class="table table-striped table-hover table-bordered align-middle rounded-3 overflow-hidden" id="TableUsuarios">
+                        <table class="table table-striped table-hover table-bordered align-middle rounded-3 overflow-hidden" id="TableAsistencias">
                             <!-- Aquí se cargan las asistencias -->
                         </table>
                     </div>
